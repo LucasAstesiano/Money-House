@@ -1,14 +1,19 @@
 "use client";
 import MainLayout from "@/app/Components/MainLayout";
+import { useDataContext } from "@/app/context/DataContext";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 import React from "react";
 
-const CompletePage = ({ params }: { params: { id: string } }) => {
+const CompletePage = () => {
   const searchParams = useSearchParams();
   const money = searchParams.get("money");
   const router = useRouter();
+
+const {accountData} = useDataContext();
+      
+      
 
   return (
     <MainLayout>
@@ -49,7 +54,7 @@ const CompletePage = ({ params }: { params: { id: string } }) => {
           <div className="mt-4">
             <h3 className="text-gray-400 mr-4">Brubank</h3>
             <div className="flex justify-between">
-              <p className="text-gray-400 mr-4 text-xs">cvu: 000000006443516</p>
+              <p className="text-gray-400 mr-4 text-xs">cvu: {accountData?.cvu}</p>
               <button
                 className="w-fit px-12 py-2 rounded-md bg-[#C1FD35] cursor-pointer"
                 onClick={() => alert("Confirmado")}

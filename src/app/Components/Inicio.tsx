@@ -27,8 +27,8 @@ const Inicio: React.FC = () => {
                     <p className="text-2xl border-2 border-[#C1FD35] rounded-3xl p-2">$ {accountData?.available_amount}</p>
                 </div>
                 <div className="text-gray-200 h-30">
-                    <a href="#" className="mr-4"  onClick={()=>{router.push('cards')}}>Ver tarjetas</a>
-                    <a href="#" onClick={()=>{router.push('insertMoney/transf')}}>Ver CVU</a>
+                    <a  className="mr-4 cursor-pointer"  onClick={()=>{router.push('cards')}}>Ver tarjetas</a>
+                    <a  className="mr-4 cursor-pointer"onClick={()=>{router.push('/main/insertMoney/transf')}}>Ver CVU</a>
                 </div>
             </header>
             <div className="flex justify-around mb-8">

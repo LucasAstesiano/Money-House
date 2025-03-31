@@ -11,9 +11,7 @@ const InsertMoneyTransf: React.FC = () => {
       
         useEffect(() => {
           AccountServices.getAccountData().then((response) => {
-            setAccountData(response);
-            
-            
+            setAccountData(response);  
           })
         }
         , []);
