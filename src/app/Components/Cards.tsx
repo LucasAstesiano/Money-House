@@ -6,26 +6,13 @@ import AddCard from "./AddCard";
 import { useRouter } from "next/navigation";
 import { AccountServices } from "../api/account/AccountServices";
 import { CardServices } from "../api/cards/CardServices";
+import CardType from "../interfaces/CardType";
+import AccountDataType from "../interfaces/AccountType";
 
 const Cards: React.FC = () => {
-  interface CardData {
-    account_id: number;
-    cod: number;
-    expiration_date: string;
-    first_last_name: string;
-    id: number;
-    number_id: number;
-  }
-  interface AccountData {
-    alias: string;
-    available_amount: 0;
-    cvu: string;
-    id: 0;
-    user_id: 0;
-  }
 
-  const [cardData, setCardData] = useState<CardData[]>([]);
-  const [accountData, setAccountData] = useState<AccountData | null>(null);
+  const [cardData, setCardData] = useState<CardType[]>([]);
+  const [accountData, setAccountData] = useState<AccountDataType | null>(null);
 
   useEffect(() => {
     CardServices.getCardData()
@@ -52,7 +39,6 @@ const Cards: React.FC = () => {
   const agregarParametro = (item: { value: string }) => {
     router.push(`/main/cards/${item.value}`);
   };
-  const [showAddCard, setshowAddCard] = useState(false);
 
   const handleDelete = (id:number)=>{
     CardServices.deleteCard(id);
@@ -67,10 +53,6 @@ const Cards: React.FC = () => {
   }
 
   return (
-    <>
-      {showAddCard ? (
-        <AddCard />
-      ) : (
         <div
           style={{
             backgroundColor: "#f0f0f0",
@@ -163,9 +145,7 @@ const Cards: React.FC = () => {
             </div>
           </div>
         </div>
-      )}
-    </>
-  );
+      )
 };
 
 export default Cards;

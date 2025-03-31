@@ -20,6 +20,20 @@ export const  ServiceServices = {
             throw error;
         }
     },
+    getServiceById: async (id: number) => {
+        try {
+            const response = await axios.get(`${API_BASE_URL}${id}`, {
+                headers: {
+                    Authorization: `${token}`
+                }
+            });
+            console.log(response.data);
+            return response.data;
+        } catch (error) {
+            console.error('Error fetching service by ID:', error);
+            throw error;
+        }
+    },
     
 
     searchService: async (query: string) => {

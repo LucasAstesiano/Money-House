@@ -2,27 +2,15 @@
 import React, { useEffect, useState } from "react";
 import { ActivityServices } from "../api/activity/ActivityServices";
 import { AccountServices } from "../api/account/AccountServices";
+import TransactionType from "../interfaces/TransactionType";
+import AccountDataType from "../interfaces/AccountType";
 
-interface Transaction {
-  id: number;
-  description: string;
-  amount: number;
-  subtitle: string;
-  destination:string,
-  dated:string
-}
-interface AccountData {
-  alias: string;
-  available_amount: 0;
-  cvu: string;
-  id: 0;
-  user_id: 0;
-}
 
 const Activity: React.FC = () => {
+  
 
-    const [transactionData, setTransactionData] = useState<Transaction[]>([]);
-    const [accountData, setAccountData] = useState<AccountData | null>(null);
+    const [transactionData, setTransactionData] = useState<TransactionType[]>([]);
+    const [accountData, setAccountData] = useState<AccountDataType | null>(null);
     
     const opciones = { weekday: "long" as "long" }; 
 

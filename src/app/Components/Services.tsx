@@ -2,33 +2,17 @@
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { ServiceServices } from '../api/service/ServiceServices';
+import servicesList from '../utils/servicesList';
+import { useRouter } from 'next/navigation';
+import ServicesResponse from '../interfaces/ServicesType';
 
-interface Option {
-    id: number;
-    name: string;
-    img:string;
-}
-interface Results{
-        id: 0,
-        name: string,
-        date: string,
-        invoice_value: 0
-}
-
-const options: Option[] = [
-    { id: 1, name: 'Claro',img:"/logo claro.png" },
-    { id: 2, name: 'personal',img:"/logo personal.png"  },
-    { id: 3, name: 'cablevision',img:"/logo cablevision.png"  },
-    { id: 4, name: 'Claro',img:"/logo claro.png"  },
-    { id: 5, name: 'personal',img:"/logo personal.png"  },
-    { id: 6, name: 'cablevision',img:"/logo cablevision.png"  },
-    { id: 7, name: 'Claro',img:"/logo claro.png"  },
-];
 
 const Services: React.FC = () => {
 
+    const router = useRouter();
+
     const [searchTerm, setSearchTerm] = useState('');
-    const [results, setResults] = useState<Results[]>([])
+    const [results, setResults] = useState<ServicesResponse[]>([])
     const [data, setData] = useState([])
 
 
@@ -53,13 +37,16 @@ const Services: React.FC = () => {
                 console.error('Error fetching services:', error);
             });
     };
+    const handleSelected = (id:number) => {
+        router.push(`/main/services/${id}`)
+    }
     
     
 
 
-    /* const filteredOptions = options.filter(option =>
+    const filteredOptions = servicesList.filter(option =>
         option.name.toLowerCase().includes(searchTerm.toLowerCase())
-    ); */
+    ); 
 
     return (
         <div className="p-4 w-full bg-[#f0f0f0] pt-8">
@@ -73,13 +60,13 @@ const Services: React.FC = () => {
             />
             <ul className="p-5 bg-white rounded-md list-none" style={{boxShadow: '2px 2px 2px 2px #D3D3D3'}}>
                 <h3 className='font-bold'>Más recientes</h3>
-                {data.map(option => (
-                    <li key={option.id} className="flex justify-between m-2 border-t-2 p-2 border-gray-200 last:border-b-2">
+                {filteredOptions.map(option => (
+                    <li key={option.id} className="flex justify-between m-2 border-t-2 p-2 h-16 border-gray-200 last:border-b-2">
                         <div className='flex'>
-                            <Image src={option.img} alt={'globe'} width={50} height={20}/>
+                            <Image src={option.image} alt={option.alt} width={50} height={30}/>
                             <span className='ml-8 text-gray-500'>{option.name}</span>
                         </div>
-                        <p className='font-bold cursor-pointer'>Selecionar</p>
+                        <p className='font-bold cursor-pointer hover:text-gray-400' onClick={()=>{handleSelected(option.id)}}>Selecionar</p>
                     </li>
                 ))}
             </ul>

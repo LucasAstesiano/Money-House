@@ -1,4 +1,6 @@
+'use client'
 import axios from 'axios';
+
 
 const API_BASE_URL = 'https://digitalmoney.digitalhouse.com/api/account';
 const token = localStorage.getItem('token')?? null;

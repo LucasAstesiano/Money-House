@@ -1,17 +1,10 @@
 'use client'
 import React from "react";
 import { useRouter } from "next/navigation";
+import HeaderPropsType from "../interfaces/HeaderType";
 
-interface HeaderProps {
-    color: string;
-    showLoginButton?: boolean;
-    showSignupButton?: boolean;
-    loginColor:string;
-    singupColor:string;
-    imgUrl: string;
-}
 
-const Header: React.FC<HeaderProps> = ({color,showLoginButton = false,showSignupButton = false,loginColor="#C1FD35",singupColor="#3A393E",imgUrl="/logo 01.png"}) => {
+const Header: React.FC<HeaderPropsType> = ({color,showLoginButton = false,showSignupButton = false,loginColor="#C1FD35",singupColor="#3A393E",imgUrl="/logo 01.png"}) => {
 
     const router = useRouter()
 

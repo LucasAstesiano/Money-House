@@ -3,26 +3,13 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { UserServices } from "../api/user/UserServices";
 import { AccountServices } from "../api/account/AccountServices";
+import AccountDataType from "../interfaces/AccountType";
+import UserType from "../interfaces/UserType";
 
 const Profile: React.FC = () => {
-  interface UserData {
-    dni: number;
-    email: string;
-    firstname: string;
-    lastname: string;
-    password: string;
-    phone: string;
-  }
-  interface AccountData {
-    alias:string,
-    available_amount:0,
-    cvu:string,
-    id:0,
-    user_id:0
-}
-
-  const [userData, setUserData] = useState<UserData | null>(null);
-  const [accountData, setAccountData] = useState<AccountData | null>(null);
+  
+  const [userData, setUserData] = useState<UserType | null>(null);
+  const [accountData, setAccountData] = useState<AccountDataType | null>(null);
 
   useEffect(() => {
     UserServices.getUserData()
