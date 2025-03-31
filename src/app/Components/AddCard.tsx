@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from "react";
-import Cards from "react-credit-cards";
+import Cards from "react-credit-cards-2";
 import "react-credit-cards/es/styles-compiled.css";
 import { CardServices } from "../api/cards/CardServices";
 
