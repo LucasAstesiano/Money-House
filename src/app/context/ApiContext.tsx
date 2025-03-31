@@ -8,7 +8,7 @@ import TransactionType from "../interfaces/TransactionType";
 // Definir tipos
 type StateType = {
     users: UserType[]; // Cambiado a un array para reflejar múltiples usuarios
-    accounts: AccountDataType; // Cambiado a un array para reflejar múltiples cuentas
+    accounts: AccountDataType[]; // Cambiado a un array para reflejar múltiples cuentas
     cards: CardType[]; // Corregido el nombre a minúscula y cambiado a un array
     transactions: TransactionType[]; // Corregido el nombre a minúscula y cambiado a un array
 };

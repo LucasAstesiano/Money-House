@@ -12,7 +12,7 @@ const Activity: React.FC = () => {
     const [transactionData, setTransactionData] = useState<TransactionType[]>([]);
     const [accountData, setAccountData] = useState<AccountDataType | null>(null);
     
-    const opciones = { weekday: "long" as "long" }; 
+    const opciones: Intl.DateTimeFormatOptions = { weekday: "long" };
 
   useEffect(() => {
     ActivityServices.getActivityData()

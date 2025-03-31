@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from "react";
-import Cards from "react-credit-cards-2";
+import Cards, { Focused } from "react-credit-cards-2";
 import "react-credit-cards-2/dist/es/styles-compiled.css";
 import { CardServices } from "../api/cards/CardServices";
 
@@ -9,7 +9,7 @@ const AddCard: React.FC = () => {
   const [first_last_name, setFirst_last_name] = useState("");
   const [expiration_date, setExpiration_date] = useState("");
   const [code, setCode] = useState("");
-  const [focus, setFocus] = useState("");
+  const [focus, setFocus] = useState<Focused | undefined>(undefined);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,6 +22,12 @@ const AddCard: React.FC = () => {
       console.error("Error al crear la tarjeta:", error);
       alert("Hubo un error al crear la tarjeta. Por favor, inténtalo de nuevo.");
       });
+  };
+  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    const validFocusValues: Focused[] = ["number", "name", "expiry", "cvc"];
+    if (validFocusValues.includes(e.target.name as Focused)) {
+      setFocus(e.target.name as Focused); // Solo se actualiza si es válido
+    }
   };
   
 
@@ -50,7 +56,7 @@ const AddCard: React.FC = () => {
               className="p-2 rounded w-full focus:outline-none focus:shadow-outline"
               value={number_id}
               onChange={(e) => setNumberId(e.target.value)}
-              onFocus={(e) => setFocus(e.target.name)}
+              onFocus={handleFocus}
               name="number"
               style={{boxShadow: '2px 2px 2px 2px #D3D3D3'}}
             />
@@ -68,7 +74,7 @@ const AddCard: React.FC = () => {
               className="shadow appearance-none  rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               value={first_last_name}
               onChange={(e) => setFirst_last_name(e.target.value)}
-              onFocus={(e) => setFocus(e.target.name)}
+              onFocus={handleFocus}
               name="name"
               style={{boxShadow: '2px 2px 2px 2px #D3D3D3'}}
 
@@ -88,7 +94,7 @@ const AddCard: React.FC = () => {
               className="shadow appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               value={expiration_date}
               onChange={(e) => setExpiration_date(e.target.value)}
-              onFocus={(e) => setFocus(e.target.name)}
+              onFocus={handleFocus}
               name="expiry"
               style={{boxShadow: '2px 2px 2px 2px #D3D3D3'}}
 
@@ -107,7 +113,7 @@ const AddCard: React.FC = () => {
               className="shadow appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               value={code}
               onChange={(e) => setCode(e.target.value)}
-              onFocus={(e) => setFocus(e.target.name)}
+              onFocus={handleFocus}
               name="cvc"
               style={{boxShadow: '2px 2px 2px 2px #D3D3D3'}}
 

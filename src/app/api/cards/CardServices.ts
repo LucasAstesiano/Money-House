@@ -27,7 +27,7 @@ export const CardServices = {
         }
     },
 
-    addCard: async ( cardData: Record<string, any>) => {
+    addCard: async ( cardData: Record<string, unknown>) => {
         const accountData = await AccountServices.getAccountData();
         const id = String(accountData?.id);
         try {
@@ -47,7 +47,7 @@ export const CardServices = {
     
 
     // Update account data by account ID
-    updateCardData: async (accountId: string, updatedData: Record<string, any>) => {
+    updateCardData: async (accountId: string, updatedData: Record<string, unknown>) => {
         try {
             const response = await axios.put(`${API_BASE_URL}/${accountId}`, updatedData);
             return response.data;

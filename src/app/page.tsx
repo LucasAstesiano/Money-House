@@ -1,9 +1,8 @@
-'use client'
+"use client";
 // pages/index.tsx
 import Header from "@/app/Components/Header";
 import { useRouter } from "next/navigation";
-import { FC } from "react";
-
+import { FC, useEffect } from "react";
 
 interface ServiceCardProps {
   title: string;
@@ -13,19 +12,24 @@ interface ServiceCardProps {
 const ServiceCard: FC<ServiceCardProps> = ({ title, description }) => {
   return (
     <div className="bg-white w-[90%] md:w-[40%] mb-4 h-48 rounded-xl p-6 shadow-md transition-transform hover:transform hover:scale-[1.02] z-3 cursor-pointer">
-      <h3 className="text-2xl font-bold mb-2 text-gray-800 border-b-lime-400 border-b-2">{title}</h3>
+      <h3 className="text-2xl font-bold mb-2 text-gray-800 border-b-lime-400 border-b-2">
+        {title}
+      </h3>
       <p className="text-gray-600">{description}</p>
     </div>
   );
 };
 
 const Home: FC = () => {
-
   const router = useRouter();
-  const token = localStorage.getItem("token");
-  if (token) {
-    router.push("/main");
-  }
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("token");
+      if (token) {
+        router.push("/main");
+      }
+    }
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col bg-[#3A33E]">
@@ -38,7 +42,13 @@ const Home: FC = () => {
         singupColor="#C1FD35"
       />
       {/* Hero Section */}
-      <main className="flex-grow relative bg-cover bg-center" style={{backgroundImage:"url('/fondo-landing.png')",backgroundPosition:"center top"}}>
+      <main
+        className="flex-grow relative bg-cover bg-center"
+        style={{
+          backgroundImage: "url('/fondo-landing.png')",
+          backgroundPosition: "center top",
+        }}
+      >
         <div className="absolute inset-0  -z-10" />
         <div className="container mx-auto px-4 py-12 ">
           <div className="z-10">
@@ -64,8 +74,7 @@ const Home: FC = () => {
             </div>
           </div>
 
-          <div className="hidden md:flex justify-center items-center h-full relative">
-          </div>
+          <div className="hidden md:flex justify-center items-center h-full relative"></div>
         </div>
 
         {/* Lime accent at bottom */}

@@ -2,7 +2,6 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { FaPlus, FaArrowRight } from "react-icons/fa";
-import AddCard from "./AddCard";
 import { useRouter } from "next/navigation";
 import { AccountServices } from "../api/account/AccountServices";
 import { CardServices } from "../api/cards/CardServices";

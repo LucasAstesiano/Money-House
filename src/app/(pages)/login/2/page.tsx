@@ -6,11 +6,20 @@ import React, { useState } from "react";
 import { toast } from "sonner";
 
 const LoginPage2: React.FC = () => {
+  return (
+    <React.Suspense fallback={<div>Loading...</div>}>
+      <LoginPage2Content />
+    </React.Suspense>
+  );
+};
+
+const LoginPage2Content: React.FC = () => {
   const searchParams = useSearchParams();
   const email = searchParams.get("email") ?? "";
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const router = useRouter()
+  
 
 
 

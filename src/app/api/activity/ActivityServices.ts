@@ -2,13 +2,13 @@ import axios from 'axios';
 import { AccountServices } from '../account/AccountServices';
 
 const API_BASE_URL = 'https://digitalmoney.digitalhouse.com/api/accounts/';
-const token = localStorage.getItem('token')?? null;
 
 export const ActivityServices = {
     // Fetch account data by account ID
-
+    
     
     getActivityData: async () => {
+        const token = localStorage.getItem('token')?? null;
         const accountData = await AccountServices.getAccountData();
         const id = String(accountData?.id);
         console.log("id:" + id);
@@ -27,7 +27,8 @@ export const ActivityServices = {
         }
     },
 
-    addCard: async ( cardData: Record<string, any>) => {
+    addCard: async ( cardData: Record<string, unknown>) => {
+        const token = localStorage.getItem('token')?? null;
         const accountData = await AccountServices.getAccountData();
         const id = String(accountData?.id);
         try {
@@ -47,7 +48,7 @@ export const ActivityServices = {
     
 
     // Update account data by account ID
-    updateCardData: async (accountId: string, updatedData: Record<string, any>) => {
+    updateCardData: async (accountId: string, updatedData: Record<string, unknown>) => {
         try {
             const response = await axios.put(`${API_BASE_URL}/${accountId}`, updatedData);
             return response.data;
@@ -58,6 +59,7 @@ export const ActivityServices = {
     },
 
     deleteActivity: async (cardId: number) => {
+        const token = localStorage.getItem('token')?? null;
         const accountData = await AccountServices.getAccountData();
         const id = String(accountData?.id);
         try {

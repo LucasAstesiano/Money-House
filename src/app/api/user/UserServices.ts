@@ -29,7 +29,7 @@ export const UserServices = {
     
 
     // Update account data by account ID
-    updateUserData: async (accountId: string, updatedData: Record<string, any>) => {
+    updateUserData: async (accountId: string, updatedData: Record<string, unknown>) => {
         try {
             const response = await axios.put(`${API_BASE_URL}/${accountId}`, updatedData);
             return response.data;

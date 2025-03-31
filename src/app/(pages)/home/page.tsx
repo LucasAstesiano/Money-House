@@ -2,6 +2,7 @@
 // pages/index.tsx
 import Header from "@/app/Components/Header";
 import { useRouter } from "next/navigation";
+import React from "react";
 import { FC } from "react";
 
 
@@ -22,10 +23,13 @@ const ServiceCard: FC<ServiceCardProps> = ({ title, description }) => {
 const Home: FC = () => {
 
   const router = useRouter();
-  const token = localStorage.getItem("token");
-  if (token) {
-    router.push("/main");
-  }
+  React.useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      router.push("/main");
+    }
+    
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col bg-[#3A33E]">

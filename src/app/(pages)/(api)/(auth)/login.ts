@@ -1,11 +1,12 @@
 import { NextApiRequest, NextApiResponse } from 'next';
+import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs';
 
 const users = [
-  { id: 1, username: 'john', password: '$2a$10$7QJ8Q9J8Q9J8Q9J8Q9J8QO' }, // password: 'password'
+  { id: 1, username: 'Lucas', password: 'Lucas1234' }, // password: 'password'
 ];
 
-const secret = 'your_jwt_secret';
+const secret = "secret_jwt_123"
 
 const loginHandler = async (req: NextApiRequest, res: NextApiResponse) => {
 if (req.method !== 'POST') {

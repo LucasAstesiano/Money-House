@@ -1,4 +1,4 @@
-import InsertMoneyTransf from '@/app/Components/InsertMoneyTransf';
+import InsertMoneyTransf from '@/app/Components/insertMoney/InsertMoneyTransf';
 import MainLayout from '@/app/Components/MainLayout';
 
 const InsertMoneyPage: React.FC = () => {

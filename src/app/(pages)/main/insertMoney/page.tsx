@@ -1,4 +1,4 @@
-import InsertMoney from "@/app/Components/InsertMoney";
+import InsertMoney from "@/app/Components/insertMoney/InsertMoney";
 import MainLayout from "@/app/Components/MainLayout";
 import React from "react";
 

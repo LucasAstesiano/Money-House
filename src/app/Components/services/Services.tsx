@@ -1,10 +1,10 @@
 'use client'
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
-import { ServiceServices } from '../api/service/ServiceServices';
-import servicesList from '../utils/servicesList';
 import { useRouter } from 'next/navigation';
-import ServicesResponse from '../interfaces/ServicesType';
+import ServicesResponse from '@/app/interfaces/ServicesType';
+import { ServiceServices } from '@/app/api/service/ServiceServices';
+import servicesList from '@/app/utils/servicesList';
 
 
 const Services: React.FC = () => {
@@ -25,6 +25,8 @@ const Services: React.FC = () => {
         const data2 =ServiceServices.getservicedata()
         .then((data2) => setData(data2))
         setData(data)
+        console.log(data2);
+        
     },[])
 
     const handleChange = (e: HandleChangeEvent): void => {
@@ -32,6 +34,8 @@ const Services: React.FC = () => {
         ServiceServices.searchService(searchTerm)
             .then((data) => {
                 setResults(data);
+                console.log(results);
+                
             })
             .catch((error) => {
                 console.error('Error fetching services:', error);

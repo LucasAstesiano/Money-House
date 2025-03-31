@@ -11,30 +11,52 @@ const LoginPage: React.FC = () => {
 
   const router = useRouter();
 
-  const token = localStorage.getItem("token");
-  if (token) {
-    router.push("/main");
-  }
+  React.useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      router.push("/main");
+    }
+    
+  }, []);
 
   React.useEffect(() => {
     console.log("Current email value:", email);
   }, [email]);
 
   const handleContinue = async () => {
+    router.push(`/login/2?email=${encodeURIComponent(email)}`);
     try {
       await AuthServices.login(email, "value"); // Cambia 'value' por la contraseña si es necesario
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
-      if (err.message == "invalid credentials") {
-        setError(""); // Limpia cualquier error previo
-        router.push(`/login/2?email=${encodeURIComponent(email)}`); // Redirige a la segunda página
+      // Verifica si el error tiene una respuesta
+      if (err.response && err.response.data) {
+        // Extrae el mensaje de error desde la respuesta
+        const errorMessage = err.response.data.error;
+  
+        // Maneja el caso específico de "invalid credentials"
+        if (errorMessage === "invalid credentials") {
+          setError(""); // Limpia cualquier error previo
+          router.push(`/login/2?email=${encodeURIComponent(email)}`); // Redirige a la segunda página
+        } else {
+          // Si el error no es "invalid credentials", muestra el mensaje de error
+          setError(errorMessage); // Muestra el mensaje de error devuelto por la API
+          toast("Problemas al iniciar sesión", {
+            description:
+              errorMessage === "user not found"
+                ? "El usuario no existe"
+                : errorMessage,
+            action: {
+              label: "OK",
+              onClick: () => console.log("Error confirmado"),
+            },
+          });
+        }
       } else {
-        setError(err.message); // Muestra el mensaje de error devuelto por la API
+        // Si no hay respuesta de error esperada, manejar otros casos
+        setError(err.message || "Error desconocido");
         toast("Problemas al iniciar sesión", {
-          description:
-            err.message == "user not found"
-              ? "El usuario no existe"
-              : err.message,
+          description: err.message || "Error desconocido",
           action: {
             label: "OK",
             onClick: () => console.log("Error confirmado"),
@@ -43,7 +65,7 @@ const LoginPage: React.FC = () => {
       }
     }
   };
-
+  
   const handleSignupClick = () => {
     router.push("/signup");
   };

@@ -3,11 +3,13 @@ import axios from 'axios';
 
 
 const API_BASE_URL = 'https://digitalmoney.digitalhouse.com/api/account';
-const token = localStorage.getItem('token')?? null;
 
-export const AccountServices = {
-    // Fetch account data by account ID
-    getAccountData: async () => {
+  
+  export const AccountServices = {
+      
+      // Fetch account data by account ID
+      getAccountData: async () => {
+        const token = localStorage.getItem('token')?? null;
         try {
             const response = await axios.get(`${API_BASE_URL}`, {
                 headers: {
@@ -23,7 +25,7 @@ export const AccountServices = {
     
 
     // Update account data by account ID
-    updateAccountData: async (accountId: string, updatedData: Record<string, any>) => {
+    updateAccountData: async (accountId: string, updatedData: Record<string, unknown>) => {
         try {
             const response = await axios.put(`${API_BASE_URL}/${accountId}`, updatedData);
             return response.data;

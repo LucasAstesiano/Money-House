@@ -1,21 +1,45 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import CardType from "@/app/interfaces/CardType";
+import AccountDataType from "@/app/interfaces/AccountType";
+import { CardServices } from "@/app/api/cards/CardServices";
+import { AccountServices } from "@/app/api/account/AccountServices";
 
 const InsertMoneyCard: React.FC = () => {
-  const cards = [
-    { id: 1, lastFourDigits: "1234" },
-    { id: 2, lastFourDigits: "5678" },
-    { id: 3, lastFourDigits: "1235" },
-    { id: 4, lastFourDigits: "5673" },
-  ];
-
   const router = useRouter();
+  const [item, setItem] = useState<CardType | null>(null);
+  const [cardData, setCardData] = useState<CardType[]>([]);
+  const [accountData, setAccountData] = useState<AccountDataType | null>(null);
 
-  const [item, setItem] = useState(cards[0]);
+  useEffect(() => {
+  // Obtener los datos de las tarjetas
+  CardServices.getCardData()
+    .then((data: CardType[]) => {
+      // Aquí se asegura que data sea un array de CardType
+      if (data && data.length > 0) {
+        setCardData(data); // Asignar los datos a cardData
+        setItem(data[0]); // Asignar el primer elemento al item
+      }
+    })
+    .catch((error) => {
+      console.error("Error fetching card data:", error);
+    });
+
+  // Obtener los datos de la cuenta
+  AccountServices.getAccountData()
+    .then((data: AccountDataType | null) => {
+      setAccountData(data); // Asignar los datos de la cuenta
+      console.log(accountData);
+      
+    })
+    .catch((error) => {
+      console.error("Error fetching account data:", error);
+    });
+}, []);
 
   const agregarParametro = (value: string) => {
     router.push(`/main/cards/${value}`);
@@ -42,9 +66,9 @@ const InsertMoneyCard: React.FC = () => {
         >
           <h2 style={{ fontWeight: "bold" }}>Tus tarjetas</h2>
           <ul>
-            {cards.map((card) => (
+            {cardData.map((card) => (
               <li
-                key={card.id}
+                key={card.number_id}
                 style={{
                   display: "flex",
                   alignItems: "center",
@@ -60,7 +84,7 @@ const InsertMoneyCard: React.FC = () => {
                     height={25}
                   />
                   <span className="ml-2">
-                    Terminada en {card.lastFourDigits}
+                    Terminada en {card.number_id.toString().slice(-4)}
                   </span>
                 </div>
                 <button
@@ -103,7 +127,7 @@ const InsertMoneyCard: React.FC = () => {
             <FaPlus style={{ marginRight: "5px" }} />
             Nueva tarjeta
           </button>
-          <Link href={`/main/insertMoney/card/${item.id}`}>
+          <Link href={`/main/insertMoney/card/${item?.account_id}`}>
             <button className="text-black bg-[#C1FD35] rounded-md py-2 px-6 cursor-pointer">
               Continuar
             </button>

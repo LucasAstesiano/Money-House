@@ -1,10 +1,11 @@
 'use client'
+import { AccountServices } from "@/app/api/account/AccountServices";
+import { useDataContext } from "@/app/context/DataContext";
 import Image from "next/image";
 import React, { useEffect } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { toast } from "sonner";
-import { AccountServices } from "../api/account/AccountServices";
-import { useDataContext } from "../context/DataContext";
+
 const InsertMoneyTransf: React.FC = () => {
 
   const {setAccountData,accountData} = useDataContext();
