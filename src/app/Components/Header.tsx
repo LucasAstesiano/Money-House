@@ -3,6 +3,7 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import HeaderPropsType from "../interfaces/HeaderType";
 import Image from "next/image";
+import Navbar from "./MenuDesplegable";
 
 
 const Header: React.FC<HeaderPropsType> = ({color,showLoginButton = false,showSignupButton = false,loginColor="#C1FD35",singupColor="#3A393E",imgUrl="/logo 01.png"}) => {
@@ -39,6 +40,7 @@ return (
         <button onClick={handleLoginClick} className="cursor-pointer" style={{ marginRight: "10px", backgroundColor:loginColor, color:singupColor, padding:"4px 8px", border:"1px solid", borderRadius:"6px" }}>Ingresar</button>
         )}
         {showSignupButton && <button onClick={handleSignupClick} className="cursor-pointer" style={{backgroundColor:singupColor , color:loginColor,border:"1px solid", padding:"4px 8px", borderRadius:"6px"}}>Crear Cuenta</button>}
+        {!showLoginButton && !showSignupButton && <Navbar/>}
     </div>
     </header>
 );

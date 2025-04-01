@@ -53,7 +53,7 @@ const Activity: React.FC = () => {
 
   return (
     <div className="bg-gray-100 min-h-screen p-4 flex justify-center items-start pt-8 w-full">
-      <div className=" rounded-lg shadow-md w-full mx-12 p-4">
+      <div className=" rounded-lg shadow-md w-full md:mx-12 p-4">
         {/* Barra de búsqueda y filtro */}
         <div className="flex items-center mb-6 ">
           <div className="relative flex-grow ">

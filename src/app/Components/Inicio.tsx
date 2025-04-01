@@ -80,7 +80,7 @@ const Inicio: React.FC = () => {
                     </li>
                     {/* Repite el bloque <li> para más transacciones */}
                 </ul>
-                <button className="md:bg-[#C1FD35] text-black py-2 px-4 rounded mt-4 flex">Ver toda tu actividad <span className='md:hidden block'> →</span></button>
+                <button className="md:bg-[#C1FD35] text-black py-2 px-4 rounded mt-4 flex" onClick={()=>router.push("/main/actividad")}>Ver toda tu actividad <span className='md:hidden block'> →</span></button>
             </section>
         </div>
     );
