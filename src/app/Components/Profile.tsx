@@ -41,9 +41,9 @@ const Profile: React.FC = () => {
         <h2 className="text-xl font-bold mb-4">Tus datos</h2>
         <ul>
           <li className="flex justify-between items-center mb-2 border-b-1 border-gray-300 p-2 ">
-          <div className="flex justify-between w-1/2 ">
-              <span >Email: </span>
-              <span className="text-gray-500 w-1/2 text-center">{userData?.email}</span>
+          <div className=" md:flex justify-between w-1/2 ">
+              <p >Email: </p>
+              <p className="text-gray-500 md:w-1/2 text-center">{userData?.email}</p>
             </div>
             <button className="text-blue-500">
               <Image
@@ -55,11 +55,11 @@ const Profile: React.FC = () => {
             </button>
           </li>
           <li className="flex justify-between items-center mb-2 border-b-1 border-gray-300 p-2">
-            <div className="flex justify-between w-1/2 ">
-              <span>Nombre y apellido: </span>
-              <span className="text-gray-500 w-1/2 text-center">
+            <div className="md:flex justify-between w-1/2 ">
+              <p>Nombre y apellido: </p>
+              <p className="text-gray-500 md:w-1/2 text-center">
                 {userData?.firstname + " " + userData?.lastname}
-              </span>
+              </p>
             </div>
             <button className="text-blue-500">
               <Image
@@ -71,9 +71,9 @@ const Profile: React.FC = () => {
             </button>
           </li>
           <li className="flex justify-between items-center mb-2 border-b-1 border-gray-300 p-2">
-            <div className="flex justify-between w-1/2 ">
-              <span>CUIT: </span>
-              <span className="text-gray-500  w-1/2 text-center">20{userData?.dni}8</span>
+            <div className="md:flex justify-between w-1/2 ">
+              <p>CUIT: </p>
+              <p className="text-gray-500  md:pw-1/2 text-center">20{userData?.dni}8</p>
             </div>
             <button className="text-blue-500">
               <Image
@@ -85,9 +85,9 @@ const Profile: React.FC = () => {
             </button>
           </li>
           <li className="flex justify-between items-center mb-2 border-b-1 border-gray-300 p-2">
-            <div className="flex justify-between w-1/2 ">
-              <span>Teléfono: </span>
-              <span className="text-gray-500  w-1/2 text-center">{userData?.phone ?? '0000000'}</span>
+            <div className="md:flex justify-between w-1/2 ">
+              <p>Teléfono: </p>
+              <p className="text-gray-500  md:w-1/2 text-center">{userData?.phone ?? '0000000'}</p>
             </div>
             <button className="text-blue-500">
               <Image
@@ -99,9 +99,9 @@ const Profile: React.FC = () => {
             </button>
           </li>
           <li className="flex justify-between items-center mb-2 border-b-1 border-gray-300 p-2">
-            <div className="flex justify-between w-1/2 ">
-              <span>Contraseña: </span>
-              <span className="text-gray-500  w-1/2 text-center"> ******* </span>
+            <div className="md:flex justify-between w-1/2 ">
+              <p>Contraseña: </p>
+              <p className="text-gray-500  md:w-1/2 text-center"> ******* </p>
             </div>
             <button className="text-blue-500">
               <Image
@@ -131,7 +131,7 @@ const Profile: React.FC = () => {
           Copia tu CVU o alias para ingresar o transferir dinero desde otra
           cuenta
         </p>
-        <div className="flex justify-between items-center mb-4">
+        <div className="flex justify-between items-center mb-4 pb-2 border-b md:border-none">
           <div>
             <h3 className="text-[#C1FD35]">CVU</h3>
             <p className="text-gray-300">{accountData?.cvu}</p>

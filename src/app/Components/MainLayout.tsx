@@ -2,6 +2,7 @@
 import React from "react";
 import Header from "./Header";
 import { useRouter} from "next/navigation";
+import Footer from "./Footer";
 
 
 const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -60,7 +61,7 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 <>
     <Header imgUrl='/logo 01.png' color='#3A393E' loginColor={''} singupColor={''}/>
     <div style={{ display: 'flex'  }} className='min-h-screen'>
-        <div style={{ width: '200px', borderRight: '1px solid #ccc', padding: '10px' }} className='bg-[#C1FD35]'>
+        <div style={{ width: '200px', borderRight: '1px solid #ccc', padding: '10px' }} className='bg-[#C1FD35] hidden md:block'>
             <ul style={{ listStyleType: 'none', padding: 0}} >
                 {items.map(item => (
                     <li key={item.name} style={{ margin: '10px 0', cursor: 'pointer' }} className='pl-4' onClick={() => agregarParametro(item)}>
@@ -71,6 +72,7 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         </div>
         {children}
     </div>
+    <Footer/>
 </>
 )}
     </div>

@@ -2,6 +2,7 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import HeaderPropsType from "../interfaces/HeaderType";
+import Image from "next/image";
 
 
 const Header: React.FC<HeaderPropsType> = ({color,showLoginButton = false,showSignupButton = false,loginColor="#C1FD35",singupColor="#3A393E",imgUrl="/logo 01.png"}) => {
@@ -31,7 +32,7 @@ return (
     }}
     >
     <div onClick={handleLogoClick} className="cursor-pointer">
-        <img src={imgUrl} alt="Logo" style={{ height: "30px" }} />
+        <Image height={30} width={50} src={imgUrl} alt="Logo" style={{ height: "30px" }} />
     </div>
     <div>
         {showLoginButton && (

@@ -21,19 +21,19 @@ const Inicio: React.FC = () => {
 
     return (
         <div className="bg-[#f0f0f0] min-h-screen p-4 w-full">
-            <header className="flex justify-between items-center mb-8 p-8 bg-[#3A393E] rounded shadow" style={{boxShadow: '2px 2px 6px 2px #D3D3D3'}}>
+            <header className="flex justify-between items-center mb-8 p-6 md:p-8 bg-[#3A393E] rounded shadow" style={{boxShadow: '2px 2px 6px 2px #D3D3D3'}}>
                 <div className="text-white ">
-                    <h1 className="text-l mb-2">Dinero disponible</h1>
+                    <h1 className="text-l mb-2 mt-4">Dinero disponible</h1>
                     <p className="text-2xl border-2 border-[#C1FD35] rounded-3xl p-2">$ {accountData?.available_amount}</p>
                 </div>
                 <div className="text-gray-200 h-30">
-                    <a  className="mr-4 cursor-pointer"  onClick={()=>{router.push('cards')}}>Ver tarjetas</a>
+                    <a  className="mr-4 cursor-pointer"  onClick={()=>{router.push('/main/cards')}}>Ver tarjetas</a>
                     <a  className="mr-4 cursor-pointer"onClick={()=>{router.push('/main/insertMoney/transf')}}>Ver CVU</a>
                 </div>
             </header>
             <div className="flex justify-around mb-8">
-                <button className="bg-[#C1FD35] w-[45%] text-black py-8 px-10 rounded cursor-pointer" style={{boxShadow: '2px 2px 6px 2px #D3D3D3'}}>Cargar dinero</button>
-                <button className="bg-[#C1FD35] w-[45%] text-black py-8 px-10 rounded cursor-pointer" style={{boxShadow: '2px 2px 6px 2px #D3D3D3'}}>Pago de servicios</button>
+                <button className="bg-[#C1FD35] w-[45%] text-black py-8 px-10 rounded cursor-pointer" style={{boxShadow: '2px 2px 6px 2px #D3D3D3'}} onClick={()=>{router.push('/main/insertMoney')}}>Cargar dinero</button>
+                <button className="bg-[#C1FD35] w-[45%] text-black py-8 px-10 rounded cursor-pointer" style={{boxShadow: '2px 2px 6px 2px #D3D3D3'}} onClick={()=>{router.push('/main/services')}}>Pago de servicios</button>
             </div>
             <div className="mb-8">
                 <input 
@@ -80,7 +80,7 @@ const Inicio: React.FC = () => {
                     </li>
                     {/* Repite el bloque <li> para más transacciones */}
                 </ul>
-                <button className="bg-[#C1FD35] text-black py-2 px-4 rounded mt-4">Ver toda tu actividad</button>
+                <button className="md:bg-[#C1FD35] text-black py-2 px-4 rounded mt-4 flex">Ver toda tu actividad <span className='md:hidden block'> →</span></button>
             </section>
         </div>
     );

@@ -55,8 +55,7 @@ const ServicesConfirmPay: React.FC<props> = ({serviceId}) => {
               <h3 className="text-white ">$ {data?.invoice_value}</h3>
             </div>
           </div>
-          <div className="bg-black w-full mt-4 p-8 rounded-md">
-            <h1 className="text-[#C1FD35]">Seleciona tu tarjeta</h1>
+          <div className="bg w-full mt-4 p-8 rounded-md">
             <div
               style={{
                 backgroundColor: "#fff",

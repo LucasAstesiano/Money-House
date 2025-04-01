@@ -122,7 +122,7 @@ const AddCard: React.FC = () => {
           <div className="col-span-1 md:col-span-2 flex justify-end">
             <button
               type="submit"
-              className={`${first_last_name && number_id && expiration_date && code ? 'bg-[#C1FD35]':'bg-[#CECECE]' } hover:bg-[#aad743] cursor-pointer text-black font-bold py-4 w-1/2 rounded focus:outline-none focus:shadow-outline`}
+              className={`${first_last_name && number_id && expiration_date && code ? 'bg-[#C1FD35]':'bg-[#CECECE]' } hover:bg-[#aad743] cursor-pointer text-black font-bold py-4 w-full md:w-1/2 rounded focus:outline-none focus:shadow-outline`}
               onClick={(event)=>{handleSubmit(event)}}
             >
               Continuar
