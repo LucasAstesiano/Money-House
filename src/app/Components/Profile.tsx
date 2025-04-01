@@ -5,12 +5,13 @@ import { UserServices } from "../api/user/UserServices";
 import { AccountServices } from "../api/account/AccountServices";
 import AccountDataType from "../interfaces/AccountType";
 import UserType from "../interfaces/UserType";
+import imagenes from "../utils/imagenes";
 
 const Profile: React.FC = () => {
   
   const [userData, setUserData] = useState<UserType | null>(null);
   const [accountData, setAccountData] = useState<AccountDataType | null>(null);
-
+  
   useEffect(() => {
     UserServices.getUserData()
       .then((data) => {
@@ -47,7 +48,7 @@ const Profile: React.FC = () => {
             </div>
             <button className="text-blue-500">
               <Image
-                src={"/icono editar.png"}
+                src={imagenes.editar}
                 alt={"icono-editar"}
                 width={20}
                 height={20}
@@ -63,7 +64,7 @@ const Profile: React.FC = () => {
             </div>
             <button className="text-blue-500">
               <Image
-                src={"/icono editar.png"}
+                src={imagenes.editar}
                 alt={"icono-editar"}
                 width={20}
                 height={20}
@@ -77,7 +78,7 @@ const Profile: React.FC = () => {
             </div>
             <button className="text-blue-500">
               <Image
-                src={"/icono editar.png"}
+                src={imagenes.editar}
                 alt={"icono-editar"}
                 width={20}
                 height={20}
@@ -91,7 +92,7 @@ const Profile: React.FC = () => {
             </div>
             <button className="text-blue-500">
               <Image
-                src={"/icono editar.png"}
+                src={imagenes.editar}
                 alt={"icono-editar"}
                 width={20}
                 height={20}
@@ -105,7 +106,7 @@ const Profile: React.FC = () => {
             </div>
             <button className="text-blue-500">
               <Image
-                src={"/icono editar.png"}
+                src={imagenes.editar}
                 alt={"icono-editar"}
                 width={20}
                 height={20}

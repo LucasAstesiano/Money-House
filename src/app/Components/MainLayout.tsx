@@ -3,6 +3,7 @@ import React from "react";
 import Header from "./Header";
 import { useRouter} from "next/navigation";
 import Footer from "./Footer";
+import imagenes from "../utils/imagenes";
 
 
 const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -59,7 +60,7 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     <div>
 {token && (
 <>
-    <Header imgUrl='/logo 01.png' color='#3A393E' loginColor={''} singupColor={''}/>
+    <Header imgUrl={imagenes.logo1} color='#3A393E' loginColor={''} singupColor={''}/>
     <div style={{ display: 'flex'  }} className='min-h-screen'>
         <div style={{ width: '200px', borderRight: '1px solid #ccc', padding: '10px' }} className='bg-[#C1FD35] hidden md:block'>
             <ul style={{ listStyleType: 'none', padding: 0}} >
