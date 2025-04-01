@@ -66,6 +66,9 @@ export default function Navbar() {
               <Link href="/main/cards" className="block px-4 py-2 text-gray-700 hover:bg-gray-200 md:text-white md:hover:bg-transparent">
                 Tarjetas
               </Link>
+              <Link href="/" onClick={()=>{localStorage.clear()}} className="block px-4 py-2 text-gray-700 hover:bg-gray-200 md:text-white md:hover:bg-transparent">
+                Cerrar Sesion
+              </Link>
             </li>
           </ul>
         </div>
