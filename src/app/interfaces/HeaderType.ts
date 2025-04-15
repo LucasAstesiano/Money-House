@@ -5,4 +5,5 @@ export default interface HeaderPropsType {
     loginColor:string;
     singupColor:string;
     imgUrl: string;
+    text?: string;
 }

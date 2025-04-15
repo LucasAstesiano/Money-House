@@ -9,6 +9,7 @@ const Inicio: React.FC = () => {
 
       const {setAccountData,accountData} = useDataContext();
         const router = useRouter();
+
       useEffect(() => {
         AccountServices.getAccountData().then((response) => {
           setAccountData(response);
@@ -17,6 +18,11 @@ const Inicio: React.FC = () => {
         })
       }
       , []);
+      const formatoMoneda = new Intl.NumberFormat('es-AR', {
+        style: 'currency',
+        currency: 'ARS',
+        minimumFractionDigits: 2,
+      });
 
 
     return (
@@ -24,7 +30,7 @@ const Inicio: React.FC = () => {
             <header className="flex justify-between items-center mb-8 p-6 md:p-8 bg-[#3A393E] rounded shadow" style={{boxShadow: '2px 2px 6px 2px #D3D3D3'}}>
                 <div className="text-white ">
                     <h1 className="text-l mb-2 mt-4">Dinero disponible</h1>
-                    <p className="text-2xl border-2 border-[#C1FD35] rounded-3xl p-2">$ {accountData?.available_amount}</p>
+                    <p className="text-2xl border-2 border-[#C1FD35] rounded-3xl p-2"> {accountData != null ? formatoMoneda.format(accountData.available_amount): formatoMoneda.format(0) }</p>
                 </div>
                 <div className="text-gray-200 h-30">
                     <a  className="mr-4 cursor-pointer"  onClick={()=>{router.push('/main/cards')}}>Ver tarjetas</a>
@@ -80,7 +86,7 @@ const Inicio: React.FC = () => {
                     </li>
                     {/* Repite el bloque <li> para más transacciones */}
                 </ul>
-                <button className="md:bg-[#C1FD35] text-black py-2 px-4 rounded mt-4 flex" onClick={()=>router.push("/main/actividad")}>Ver toda tu actividad <span className='md:hidden block'> →</span></button>
+                <button className="md:bg-[#C1FD35] text-black py-2 px-4 rounded mt-4 flex cursor-pointer" onClick={()=>router.push("/main/actividad")}>Ver toda tu actividad <span className='md:hidden block'> →</span></button>
             </section>
         </div>
     );

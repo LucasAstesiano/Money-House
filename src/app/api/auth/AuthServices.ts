@@ -1,3 +1,4 @@
+import SignUpResponseType, { LoginResponseType } from '@/app/interfaces/SignUpType';
 import axios, { AxiosError } from 'axios';
 
 interface User {
@@ -13,25 +14,25 @@ interface User {
 class  AuthService {
     private apiUrl = 'https://digitalmoney.digitalhouse.com/api';
 
-    async signUp(user: User): Promise<unknown> {
+    async signUp(user: User): Promise<SignUpResponseType> {
         try {
             const response = await axios.post(`${this.apiUrl}/users`, user);
-            return response.data;
+            return {Status:response.status,data:response.data};
         } catch (error: unknown) {
             const axiosError = error as AxiosError<{ error: string }>;
-            return { error: axiosError.response?.data?.error || "Error sigin in" };
+            return { Status: axiosError.response?.status || 500, error: axiosError.response?.data?.error || "Error signing in" };
         }
     }
 
-    async login(email: string, password: string): Promise<{token?: string; error?: string }> {
+    async login(email: string, password: string): Promise<LoginResponseType> {
         try {
             const response = await axios.post(`${this.apiUrl}/login`, { email, password });
-            return {token :response.data.token};
+            return { Status: response.status, token: response.data.token };
         } catch (error: unknown) {
             const axiosError = error as AxiosError<{ error: string }>;
             console.log(error);
             
-      return { error: axiosError.response?.data?.error || "Error logging in" };
+      return { Status: axiosError.response?.status || 500, error: axiosError.response?.data?.error || "Error logging in" };
         }
     }
 }

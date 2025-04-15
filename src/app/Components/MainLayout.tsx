@@ -21,7 +21,7 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const agregarParametro = (item: { value: string }) => {
         if (item.value === 'close') {
           localStorage.removeItem('token');
-          router.push('/login');
+          router.push('/home');
           return;
         }
     router.push(`/main/${item.value}`);

@@ -2,8 +2,7 @@
 import Header from "@/app/Components/Header";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import AuthServices from "@/app/api/auth/AuthServices";
-import { toast } from "sonner";
+
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -22,52 +21,22 @@ const LoginPage: React.FC = () => {
   React.useEffect(() => {
     console.log("Current email value:", email);
   }, [email]);
-
-  const handleContinue = async () => {
-    router.push(`/login/2?email=${encodeURIComponent(email)}`);
-    try {
-      await AuthServices.login(email, "value"); // Cambia 'value' por la contraseña si es necesario
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (err: any) {
-      // Verifica si el error tiene una respuesta
-      if (err.response && err.response.data) {
-        // Extrae el mensaje de error desde la respuesta
-        const errorMessage = err.response.data.error;
-  
-        // Maneja el caso específico de "invalid credentials"
-        if (errorMessage === "invalid credentials") {
-          setError(""); // Limpia cualquier error previo
-          router.push(`/login/2?email=${encodeURIComponent(email)}`); // Redirige a la segunda página
-        } else {
-          // Si el error no es "invalid credentials", muestra el mensaje de error
-          setError(errorMessage); // Muestra el mensaje de error devuelto por la API
-          toast("Problemas al iniciar sesión", {
-            description:
-              errorMessage === "user not found"
-                ? "El usuario no existe"
-                : errorMessage,
-            action: {
-              label: "OK",
-              onClick: () => console.log("Error confirmado"),
-            },
-          });
-        }
-      } else {
-        // Si no hay respuesta de error esperada, manejar otros casos
-        setError(err.message || "Error desconocido");
-        toast("Problemas al iniciar sesión", {
-          description: err.message || "Error desconocido",
-          action: {
-            label: "OK",
-            onClick: () => console.log("Error confirmado"),
-          },
-        });
-      }
-    }
-  };
   
   const handleSignupClick = () => {
     router.push("/signup");
+  };
+
+  const handleContinue = async () => {
+    if (!email) {
+      setError("Este campo no puede estar vacío, Por favor ingresa un correo electrónico.");
+      return;
+    }
+    if (!email.includes("@")) {
+      setError("Por favor, ingresa un correo electrónico válido.");
+      return;
+    }
+    setError(""); // Clear any previous error
+    router.push(`/login/2?email=${encodeURIComponent(email)}`);
   };
 
   return (

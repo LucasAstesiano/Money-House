@@ -13,8 +13,8 @@ interface ServiceCardProps {
 
 const ServiceCard: FC<ServiceCardProps> = ({ title, description }) => {
   return (
-    <div className="bg-white w-[90%] md:w-[40%] mb-4 h-48 rounded-xl p-6 shadow-md transition-transform hover:transform hover:scale-[1.02] z-3 cursor-pointer">
-      <h3 className="text-2xl font-bold mb-2 text-gray-800 border-b-lime-400 border-b-2">{title}</h3>
+    <div className="bg-white w-[90%] md:w-[35%] mb-4 h-58 rounded-xl py-6  px-14 shadow-md transition-transform hover:transform hover:scale-[1.02] z-3 cursor-pointer mx-1">
+      <h3 className="text-3xl font-bold mb-2 text-black pb-2 border-b-lime-400 border-b-2">{title}</h3>
       <p className="text-gray-600">{description}</p>
     </div>
   );
@@ -35,28 +35,28 @@ const Home: FC = () => {
     <div className="min-h-screen flex flex-col bg-[#3A33E]">
       <Header
         imgUrl="/Logo 01.png"
-        color="#3A393E"
+        color="#201F22"
         showLoginButton={true}
         showSignupButton={true}
-        loginColor="#3A393E"
+        loginColor="#201F22"
         singupColor="#C1FD35"
       />
       {/* Hero Section */}
-      <main className="flex-grow relative bg-cover bg-center" style={{backgroundImage:"url('/fondo-landing.png')",backgroundPosition:"center top"}}>
+      <main className="flex-grow relative bg-cover bg-center" style={{backgroundImage:"url('/fondo-landing.png')",backgroundPosition:"center -24px"}}>
         <div className="absolute inset-0  -z-10" />
-        <div className="container mx-auto px-4 py-12 ">
-          <div className="z-10">
-            <h1 className="w-72 text-3xl md:text-4xl font-bold mb-4 text-white">
+        <div className="container mx-auto px-4 py-12 mt-20">
+          <div className="z-10 ml-2">
+            <h1 className="w-82 text-2xl md:text-5xl mb-4 text-white">
               De ahora en adelante, hacés más con tu dinero
             </h1>
-            <p className="text-white mb-2 text-lg">
+            <p className="text-lime-400 mb-2 text-2xl">
               Tu nueva{" "}
-              <span className="text-lime-400 font-semibold">
+              <span className="text-lime-400 font-bold">
                 billetera virtual
               </span>
             </p>
 
-            <div className="flex flex-col md:flex-row justify-around mt-16">
+            <div className="flex flex-col md:flex-row justify-center mt-16">
               <ServiceCard
                 title="Transferí dinero"
                 description="Desde Digital Money House vas a poder transferir dinero a otras cuentas, así como también recibir transferencias y nuclear tu capital en nuestra billetera virtual"
@@ -73,7 +73,7 @@ const Home: FC = () => {
         </div>
 
         {/* Lime accent at bottom */}
-        <div className="bg-lime-400 h-80 md:h-26 absolute bottom-0 left-0 right-0 z-2 rounded-t-3xl"></div>
+        <div className="bg-lime-400 h-80 md:h-46 absolute bottom-0 left-0 right-0 z-2 rounded-t-3xl"></div>
       </main>
       {/* Footer */}
       <footer className="bg-[#3A393E] text-lime-400 py-4 pl-2.5 text-left text-sm">

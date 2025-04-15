@@ -21,25 +21,36 @@ const LoginPage2Content: React.FC = () => {
   const router = useRouter()
   
 
+const handlechange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  setError("");
+  setPassword(e.target.value);
+};
 
 
   const handleContinue = async () => {
     try {
-      const response = await AuthServices.login(email, password); // Cambia 'value' por la contraseña si es necesario
+      const response = await AuthServices.login(email, password); 
       if (response?.token) {
-        localStorage.setItem("token", response.token); // Guarda el token en el localStorage
-        // Guarda el token en el authContext        
+        localStorage.setItem("token", response.token); 
         router.push("/main"); // Redirige al usuario después de iniciar sesión
+      }
+      else if (response.Status != 201){
+        switch (response.error) {
+          case "user not found": setError("El usuario ingresado no existe")
+            break;
+          case "invalid credentials": setError("Contraseña incorrecta, intenta nuevamente")
+          break;
+          default:setError("Ocurrio un error inesperado")
+            break;
+        }
       }
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
-      setError(err.message); // Muestra el mensaje de error devuelto por la API
+      setError(err.message);
       setPassword("")
       toast("Problemas al iniciar sesión", {
         description:
-          err.message === "invalid credentials"
-            ? "Contraseña incorrecta"
-            : err.message,
+          err.message,
         action: {
           label: "OK",
           onClick: () => console.log("Error confirmado"),
@@ -65,18 +76,24 @@ const LoginPage2Content: React.FC = () => {
           <input
             type="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => handlechange(e)}
             placeholder="Contraseña"
             className="bg-white rounded-md"
             style={{ marginBottom: "10px", padding: "10px", width: "300px" }}
           />
-          <button
-            onClick={handleContinue}
+            <button
+            onClick={() => {
+              if (password.trim() === "") {
+              setError("Este campo no puede estar vacío, Por favor ingresa la contraseña.");
+              return;
+              }
+              handleContinue();
+            }}
             className="bg-[#C1FD35] rounded-md"
             style={{ marginBottom: "10px", padding: "10px", width: "300px" }}
-          >
+            >
             Continuar
-          </button>
+            </button>
           {error && <p style={{ color: "red", marginTop: "10px" }}>{error}</p>}
         </div>
       </div>
