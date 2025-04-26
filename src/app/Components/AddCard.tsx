@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Cards, { Focused } from "react-credit-cards-2";
 import "react-credit-cards-2/dist/es/styles-compiled.css";
 import { CardServices } from "../api/cards/CardServices";
+import { toast } from "sonner";
 
 const AddCard: React.FC = () => {
   const [number_id, setNumberId] = useState("");
@@ -20,7 +21,14 @@ const AddCard: React.FC = () => {
       })
       .catch((error) => {
       console.error("Error al crear la tarjeta:", error);
-      alert("Hubo un error al crear la tarjeta. Por favor, inténtalo de nuevo.");
+      toast("Hubo un error al crear la tarjeta.", {
+        description:
+          error,
+        action: {
+          label: "OK",
+          onClick: () => console.log("Error confirmado"),
+        },
+      });
       });
   };
   const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {

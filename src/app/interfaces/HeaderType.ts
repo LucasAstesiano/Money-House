@@ -6,4 +6,5 @@ export default interface HeaderPropsType {
     singupColor:string;
     imgUrl: string;
     text?: string;
+    name?: string;
 }

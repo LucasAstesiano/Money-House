@@ -1,12 +1,12 @@
 import axios from 'axios';
 const API_BASE_URL = 'https://digitalmoney.digitalhouse.com/service/';
-const token = localStorage.getItem('token')?? null;
 
 export const  ServiceServices = {
     // Fetch account data by account ID
 
     
     getservicedata: async () => {
+        const token = typeof window !== 'undefined' ? localStorage.getItem('token') ?? null : null;  // <-- 1. protegemos
         try {
             const response = await axios.get(`${API_BASE_URL}`, {
                 headers: {
@@ -21,6 +21,7 @@ export const  ServiceServices = {
         }
     },
     getServiceById: async (id: number) => {
+        const token = typeof window !== 'undefined' ? localStorage.getItem('token') ?? null : null;  // <-- 1. protegemos
         try {
             const response = await axios.get(`${API_BASE_URL}${id}`, {
                 headers: {
@@ -37,6 +38,7 @@ export const  ServiceServices = {
     
 
     searchService: async (query: string) => {
+        const token = typeof window !== 'undefined' ? localStorage.getItem('token') ?? null : null;  // <-- 1. protegemos
         try {
             const response = await axios.get(`${API_BASE_URL}${query}`, {
                 headers: {

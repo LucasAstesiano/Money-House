@@ -2,13 +2,13 @@ import axios from 'axios';
 import { AccountServices } from '../account/AccountServices';
 
 const API_BASE_URL = 'https://digitalmoney.digitalhouse.com/api/users/';
-const token = localStorage.getItem('token')?? null;
 
 export const UserServices = {
     // Fetch account data by account ID
 
     
     getUserData: async () => {
+        const token = typeof window !== 'undefined' ? localStorage.getItem('token') ?? null : null;  // <-- 1. protegemos
         const accountData = await AccountServices.getAccountData();
         const userId = String(accountData?.user_id);
         console.log("id:" + userId);
@@ -29,9 +29,16 @@ export const UserServices = {
     
 
     // Update account data by account ID
-    updateUserData: async (accountId: string, updatedData: Record<string, unknown>) => {
+    updateUserData: async ( updatedData: Record<string, unknown>) => {
+        const token = typeof window !== 'undefined' ? localStorage.getItem('token') ?? null : null;  // <-- 1. protegemos
+        const accountData = await AccountServices.getAccountData();
+        const userId = String(accountData?.user_id);
         try {
-            const response = await axios.put(`${API_BASE_URL}/${accountId}`, updatedData);
+            const response = await axios.patch(`${API_BASE_URL}${userId}`,updatedData,{
+                headers: {
+                    Authorization: `${token}`,
+                }
+            });
             return response.data;
         } catch (error) {
             console.error('Error updating account data:', error);

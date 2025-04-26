@@ -9,7 +9,7 @@ const API_BASE_URL = 'https://digitalmoney.digitalhouse.com/api/account';
       
       // Fetch account data by account ID
       getAccountData: async () => {
-        const token = localStorage.getItem('token')?? null;
+        const token = typeof window !== 'undefined' ? localStorage.getItem('token') ?? null : null;  // <-- 1. protegemos
         try {
             const response = await axios.get(`${API_BASE_URL}`, {
                 headers: {

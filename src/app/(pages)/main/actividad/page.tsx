@@ -8,7 +8,7 @@ const ActividadPage: React.FC = () => {
     
     return (
         <MainLayout>
-            <Activity/>
+            <Activity ShowButton={false}/>
         </MainLayout>
     );
 };

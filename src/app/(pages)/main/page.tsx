@@ -15,7 +15,7 @@ const MainPage: React.FC = () => {
       
     })
   }
-  , []);
+  , [setAccountData]);
 
   return (
     <MainLayout>

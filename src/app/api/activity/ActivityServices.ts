@@ -8,7 +8,7 @@ export const ActivityServices = {
     
     
     getActivityData: async () => {
-        const token = localStorage.getItem('token')?? null;
+        const token = typeof window !== 'undefined' ? localStorage.getItem('token') ?? null : null;  // <-- 1. protegemos
         const accountData = await AccountServices.getAccountData();
         const id = String(accountData?.id);
         console.log("id:" + id);
@@ -28,7 +28,7 @@ export const ActivityServices = {
     },
 
     addCard: async ( cardData: Record<string, unknown>) => {
-        const token = localStorage.getItem('token')?? null;
+        const token = typeof window !== 'undefined' ? localStorage.getItem('token') ?? null : null;  // <-- 1. protegemos
         const accountData = await AccountServices.getAccountData();
         const id = String(accountData?.id);
         try {
@@ -59,7 +59,7 @@ export const ActivityServices = {
     },
 
     deleteActivity: async (cardId: number) => {
-        const token = localStorage.getItem('token')?? null;
+        const token = typeof window !== 'undefined' ? localStorage.getItem('token') ?? null : null;  // <-- 1. protegemos
         const accountData = await AccountServices.getAccountData();
         const id = String(accountData?.id);
         try {

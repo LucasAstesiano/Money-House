@@ -1,14 +1,15 @@
+'use client';
 import axios from 'axios';
 import { AccountServices } from '../account/AccountServices';
 
 const API_BASE_URL = 'https://digitalmoney.digitalhouse.com/api/accounts/';
-const token = localStorage.getItem('token')?? null;
 
 export const CardServices = {
     // Fetch account data by account ID
 
     
     getCardData: async () => {
+        const token = typeof window !== 'undefined' ? localStorage.getItem('token') ?? null : null;  // <-- 1. protegemos
         const accountData = await AccountServices.getAccountData();
         const id = String(accountData?.id);
         console.log("id:" + id);
@@ -28,6 +29,11 @@ export const CardServices = {
     },
 
     addCard: async ( cardData: Record<string, unknown>) => {
+        const token = typeof window !== 'undefined' ? localStorage.getItem('token') ?? null : null;  // <-- 1. protegemos
+        const cards = await CardServices.getCardData();
+        if (cards.length >= 10) {
+            throw('No puedes tener más de 10 tarjetas');   
+        }
         const accountData = await AccountServices.getAccountData();
         const id = String(accountData?.id);
         try {
@@ -58,6 +64,7 @@ export const CardServices = {
     },
 
     deleteCard: async (cardId: number) => {
+        const token = typeof window !== 'undefined' ? localStorage.getItem('token') ?? null : null;  // <-- 1. protegemos
         const accountData = await AccountServices.getAccountData();
         const id = String(accountData?.id);
         try {

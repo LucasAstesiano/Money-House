@@ -1,9 +1,9 @@
 'use client'
-import Image from 'next/image';
 import React, { useEffect } from 'react';
 import { useDataContext } from '../context/DataContext';
 import { AccountServices } from '../api/account/AccountServices';
 import { useRouter } from 'next/navigation';
+import Activity from './Activity';
 
 const Inicio: React.FC = () => {
 
@@ -41,53 +41,8 @@ const Inicio: React.FC = () => {
                 <button className="bg-[#C1FD35] w-[45%] text-black py-8 px-10 rounded cursor-pointer" style={{boxShadow: '2px 2px 6px 2px #D3D3D3'}} onClick={()=>{router.push('/main/insertMoney')}}>Cargar dinero</button>
                 <button className="bg-[#C1FD35] w-[45%] text-black py-8 px-10 rounded cursor-pointer" style={{boxShadow: '2px 2px 6px 2px #D3D3D3'}} onClick={()=>{router.push('/main/services')}}>Pago de servicios</button>
             </div>
-            <div className="mb-8">
-                <input 
-                    type="text" 
-                    placeholder=" 🔍︎ Buscar en tu actividad" 
-                    className="w-full p-2 py-3 rounded bg-white shadow"
-                    style={{boxShadow: '2px 2px 6px 2px #D3D3D3'}}
-                />
-            </div>
-            <section className='bg-white p-4 rounded' style={{boxShadow: '2px 2px 6px 2px #D3D3D3'}}>
-                <h2 className="text-black text-xl mb-4 border-b-2">Tu actividad</h2>
-                <ul>
-                <li className="flex justify-between items-center mb-4 text-black border-b-1 border-gray-400">
-                        <div className="flex items-center">
-                        <Image src={'/Ellipse 7.png'} alt={'Elipse'} width={25} height={25}/>
-                            <div className="bg-neon-green rounded-full h-8 w-8 mr-4"></div>
-                            <span>Transferiste a Rodrigo</span>
-                        </div>
-                        <div className='flex flex-col'>
-                            <span>$ 1265,57</span>
-                            <span className="ml-4 text-gray-600">sábado</span>
-                        </div>
-                    </li><li className="flex justify-between items-center mb-4 text-black border-b-1 border-gray-400">
-                        <div className="flex items-center">
-                        <Image src={'/Ellipse 7.png'} alt={'Elipse'} width={25} height={25}/>
-                            <div className="bg-neon-green rounded-full h-8 w-8 mr-4"></div>
-                            <span>Transferiste a Rodrigo</span>
-                        </div>
-                        <div className='flex flex-col'>
-                            <span>$ 1265,57</span>
-                            <span className="ml-4 text-gray-600">sábado</span>
-                        </div>
-                    </li>
-                    <li className="flex justify-between items-center mb-4 text-black border-b-1 border-gray-400">
-                        <div className="flex items-center">
-                        <Image src={'/Ellipse 7.png'} alt={'Elipse'} width={25} height={25}/>
-                            <div className="bg-neon-green rounded-full h-8 w-8 mr-4"></div>
-                            <span>Transferiste a Rodrigo</span>
-                        </div>
-                        <div className='flex flex-col'>
-                            <span>$ 1265,57</span>
-                            <span className="ml-4 text-gray-600">sábado</span>
-                        </div>
-                    </li>
-                    {/* Repite el bloque <li> para más transacciones */}
-                </ul>
-                <button className="md:bg-[#C1FD35] text-black py-2 px-4 rounded mt-4 flex cursor-pointer" onClick={()=>router.push("/main/actividad")}>Ver toda tu actividad <span className='md:hidden block'> →</span></button>
-            </section>
+            
+            <Activity ShowButton={true} />
         </div>
     );
 };
