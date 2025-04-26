@@ -5,7 +5,6 @@ import { UserServices } from "../api/user/UserServices";
 import { AccountServices } from "../api/account/AccountServices";
 import AccountDataType from "../interfaces/AccountType";
 import UserType from "../interfaces/UserType";
-import imagenes from "../utils/imagenes";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import CopyToClipboard from "react-copy-to-clipboard";
@@ -115,7 +114,7 @@ const Profile: React.FC = () => {
                   onClick={() => handleEditClick(field, value)}
                 >
                   <Image
-                    src={imagenes.editar}
+                    src={'/Icono editar.png'}
                     alt={"icono-editar"}
                     width={20}
                     height={20}
