@@ -14,7 +14,7 @@ const InsertCardConfirm: React.FC<props> = ({id}) => {
         const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
           setMoney(e.target.value);
         };
-        const handleclick = () => {
+        const handleclick = () => {          
           router.push(`/main/insertMoney/card/${ id }/confirm?money=${money}`);
         }
       

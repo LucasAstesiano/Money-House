@@ -27,6 +27,8 @@ if (req.method !== 'POST') {
 
   const token = jwt.sign({ id: user.id, username: user.username }, secret, { expiresIn: '1h' });
 
+ 
+
   res.status(200).json({ token });
 };
 

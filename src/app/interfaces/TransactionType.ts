@@ -6,3 +6,8 @@ export default interface TransactionType {
   destination:string,
   dated:string
 }
+export interface TransactionData {
+  amount: number; 
+  description: string;
+  dated: string;
+}
