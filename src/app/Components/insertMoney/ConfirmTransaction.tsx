@@ -83,7 +83,7 @@ const ConfirmTransaction: React.FC<props> = ({money}) => {
                 className="min-h-screen flex flex-col items-center w-full"
               >
                 <div className="flex flex-col items-center w-full  h-30 bg-[#C1FD35] p-4 rounded-md mb-8 mt-10">
-                  <Image src={"/check-black.png"} alt={"check"} width={50} height={50} />
+                  <Image src={"/Check-black.png"} alt={"check"} width={50} height={50} />
                   <h2 className="font-bold mt-2 text-2xl ">Ya cargamos el dinero en tu cuenta</h2>
                 </div>
                 <div className="flex flex-col bg-[#201F22] w-full h-fit p-6 rounded-md">

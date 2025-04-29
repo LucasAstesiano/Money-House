@@ -75,7 +75,7 @@ if (okForm) {
 
   return (
     <div className="bg-[#3A393E] min-h-screen">
-      <Header color={'#C1FD35'} showLoginButton={true} loginColor={'#3A393E'} singupColor={'white'} imgUrl={'/logo 02.png'} text={'inciar sesión'} />
+      <Header color={'#C1FD35'} showLoginButton={true} loginColor={'#3A393E'} singupColor={'white'} imgUrl={"/Logo 02.png"} text={'inciar sesión'} />
       <div className="flex justify-center mt-10 min-h-screen">
         <div className="p-8 rounded-lg shadow-lg w-full max-w-3xl text-white">
           <h2 className="text-2xl font-bold mb-6 text-center">Crear Cuenta</h2>
