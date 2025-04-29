@@ -18,7 +18,7 @@ const router = useRouter();
         <div style={{ textAlign: 'center', padding: '20px' }} className='flex flex-col items-center mt-10'>
             <h1 className='text-5xl text-white'>Registro Exitoso</h1>
             <div className='my-5'>
-                <Image src={"/check.png"} alt={'Succes'} width={100} height={100}/>
+                <Image src={"/Check.png"} alt={'Succes'} width={100} height={100}/>
                 {/*<img src="/check.png" alt="Success" style={{ width: '100px', height: '100px' }} />*/}
             </div>
             <p className='text-gray-200 w-full md:w-xl'>Hemos enviado un correo de confirmación para validar tu email, por favor revisalo para iniciar sesión</p>

@@ -18,7 +18,7 @@ const Header: React.FC<HeaderPropsType> = ({color,showLoginButton = false,showSi
         router.push("/signup");
     };
     const handleInicioClick = () => {
-        router.push("");
+        router.push("/main/inicio");
     };
     const handleLogoClick = () => {
         router.push("/home");
@@ -38,7 +38,7 @@ return (
     <div onClick={handleLogoClick} className="cursor-pointer">
         <Image height={30} width={60} src={imgUrl} alt="Logo" style={{ height: "30px" }} />
     </div>
-    <div>
+    <div className="flex">
         {showLoginButton && (
         <button onClick={handleLoginClick} className={`cursor-pointer ${text ? "border-none":"border-1 border-[#C1FD35]"}`} style={{ marginRight: "10px", backgroundColor:loginColor, color:singupColor, padding:"5px 14px", borderRadius:"6px" }}>{text? text :"Ingresar"}</button>
         )}
@@ -46,7 +46,7 @@ return (
         {name &&
          <div className="flex">
             <button onClick={handleInicioClick} className={`cursor-pointer ${text ? "border-none":"border-1 border-[#C1FD35] font-bold"}`} style={{ marginRight: "10px", backgroundColor:"#C1FD35", color:singupColor, padding:"5px 14px", borderRadius:"6px" }}>{name.split(" ").map(word => word[0]).join("").toUpperCase()}</button>
-             <p className="text-white text-sm self-center font-semibold"> Hola, {name}</p>
+             <p className="hidden md:block md:text-white text-sm self-center font-semibold"> Hola, {name}</p>
          </div>}
         {!showLoginButton && !showSignupButton && <Navbar/>}
     </div>
