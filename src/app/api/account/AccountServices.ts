@@ -4,11 +4,9 @@ import axios from 'axios';
 
 const API_BASE_URL = 'https://digitalmoney.digitalhouse.com/api/account';
 
-  
-  export const AccountServices = {
-      
-      // Fetch account data by account ID
-      getAccountData: async () => {
+export const AccountServices = {
+        // Fetch account data by account ID
+    getAccountData: async () => {
         const token = typeof window !== 'undefined' ? localStorage.getItem('token') ?? null : null;  // <-- 1. protegemos
         try {
             const response = await axios.get(`${API_BASE_URL}`, {
@@ -16,8 +14,16 @@ const API_BASE_URL = 'https://digitalmoney.digitalhouse.com/api/account';
                     Authorization: `${token}`
                 }
             });
+            
             return response.data;
-        } catch (error) {
+        } catch (error ) {
+            console.log(error);
+            
+            if (axios.isAxiosError(error) && error.response?.data?.error?.includes("token")) {
+                localStorage.removeItem('token'); // Ahora está protegido
+                 // Redirigir a la página de inicio de sesión
+                window.location.href = '/login';
+            }
             console.error('Error fetching account data:', error);
             throw error;
         }

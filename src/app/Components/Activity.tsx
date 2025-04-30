@@ -250,7 +250,7 @@ const Activity: React.FC<{ ShowButton: boolean }> = ({ ShowButton = false }) => 
                   <span>
                     {transaction.description === "Deposito de dinheiro"
                       ? "Depósito de dinero"
-                      : "Transfirió "}
+                      : transaction.description}
                   </span>
                 </div>
                 <div className="text-right">
